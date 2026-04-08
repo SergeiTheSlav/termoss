@@ -24,7 +24,28 @@ struct TermossApp: App {
                 }
                 .keyboardShortcut(",", modifiers: .command)
             }
+            CommandMenu("Extras") {
+                PlanarityMenuButton()
+            }
         }
+
+        Window("Planarity", id: "planarity") {
+            PlanarityView()
+                .frame(minWidth: 720, minHeight: 640)
+        }
+        .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 860, height: 760)
+    }
+}
+
+private struct PlanarityMenuButton: View {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Planarity") {
+            openWindow(id: "planarity")
+        }
+        .keyboardShortcut("p", modifiers: [.command, .shift])
     }
 }
 

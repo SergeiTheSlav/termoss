@@ -17,10 +17,18 @@ if [ -n "$RESOURCES_SRC" ]; then
     cp -R "$RESOURCES_SRC" "$APP_DIR/Contents/Resources/"
 fi
 
+# Copy Info.plist (required for macOS to recognize the icon + bundle metadata)
+if [ -f "Termoss_macOS/Resources/Info.plist" ]; then
+    cp "Termoss_macOS/Resources/Info.plist" "$APP_DIR/Contents/Info.plist"
+fi
+
 # Copy app icon
 if [ -f "Termoss_macOS/Resources/AppIcon.icns" ]; then
     cp "Termoss_macOS/Resources/AppIcon.icns" "$APP_DIR/Contents/Resources/AppIcon.icns"
 fi
+
+# Nudge Launch Services to refresh the cached icon for this bundle
+touch "$APP_DIR"
 
 # Ad-hoc sign the app so Keychain stops prompting for permission
 echo "Signing..."
