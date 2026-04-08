@@ -29,7 +29,24 @@
       "Bash(ls /Users/janjamscikov/Desktop/Termoss/build*)",
       "Bash(gh auth:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(grep -iE 'zip|app$|dmg')",
+      "Bash(git rm:*)",
+      "Bash(git commit -m \"Initial commit: Termoss SSH terminal app:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(brew install:*)",
+      "Bash(/opt/homebrew/bin/brew install:*)",
+      "Bash(/opt/homebrew/bin/gh auth:*)",
+      "Bash(git commit:*)",
+      "Bash(/opt/homebrew/bin/gh api:*)",
+      "Bash(git config:*)",
+      "Bash(git mv:*)",
+      "Bash(git log:*)",
+      "Bash(pkill -9 -f Termoss)",
+      "Bash(pkill -9 -f MobaXterm)",
+      "Bash(/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain user)",
+      "Bash(echo \"exit: $?\")"
     ]
   }
 }

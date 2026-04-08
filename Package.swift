@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "MobaXterm_macOS",
+    name: "Termoss",
     platforms: [
         .macOS(.v14)
     ],
@@ -11,9 +11,9 @@ let package = Package(
     ],
     targets: [
         .executableTarget(
-            name: "MobaXterm_macOS",
+            name: "Termoss",
             dependencies: ["SwiftTerm"],
-            path: "MobaXterm_macOS",
+            path: "Termoss_macOS",
             exclude: ["Resources"]
         ),
     ]

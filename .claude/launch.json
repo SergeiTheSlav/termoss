@@ -2,7 +2,7 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "MobaXterm macOS App",
+      "name": "Termoss macOS App",
       "runtimeExecutable": "swift",
       "runtimeArgs": ["run"]
     }
