@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(swift build:*)",
+      "Bash(chmod +x /Users/janjamscikov/Desktop/Moba2/build.sh)",
+      "Bash(bash /Users/janjamscikov/Desktop/Moba2/build.sh)",
+      "Bash(pkill -f MobaXterm_macOS)",
+      "Bash(open /Users/janjamscikov/Desktop/Moba2/build/MobaXterm.app)",
+      "Bash(expect -v)",
+      "Bash(open build/MobaXterm.app)",
+      "Bash(codesign --force --deep --sign - build/MobaXterm.app)",
+      "Bash(codesign --force --deep --sign - build/Termoss.app)",
+      "Bash(open build/Termoss.app)",
+      "Bash(swift package:*)",
+      "Bash(open /Users/janjamscikov/Desktop/Termoss/.build/debug/MobaXterm_macOS)",
+      "Bash(bash build.sh)",
+      "Bash(bash /Users/janjamscikov/Desktop/Termoss/build.sh)",
+      "Bash(iconutil -c icns /tmp/Termoss.iconset -o /Users/janjamscikov/Desktop/Termoss/MobaXterm_macOS/Resources/AppIcon.icns)",
+      "Bash(sips -g all /tmp/Termoss.iconset/icon_512x512.png)",
+      "Bash(/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -f /Users/janjamscikov/Desktop/Termoss/build/Termoss.app)",
+      "Bash(killall Finder)",
+      "Bash(killall Dock)",
+      "Bash(xcodebuild -scheme MobaXterm_macOS -destination 'platform=macOS' build)",
+      "Bash(sudo xcode-select:*)",
+      "Bash(mdfind \"kMDItemCFBundleIdentifier == ''com.apple.dt.Xcode''\")",
+      "Bash(xcode-select -p)",
+      "Bash(ls /Applications/Xcode*.app)",
+      "Bash(ls /Users/janjamscikov/Desktop/Termoss/*.xcodeproj /Users/janjamscikov/Desktop/Termoss/*.xcworkspace)",
+      "Bash(ls /Users/janjamscikov/Desktop/Termoss/build*)",
+      "Bash(gh auth:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

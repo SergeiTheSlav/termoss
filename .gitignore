@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Swift Package Manager / build artifacts
+.build/
+build/
+.swiftpm/
+Package.resolved
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+DerivedData/
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs / temp
+*.log
+*.tmp
+
+# Packaged builds
+*.zip
+*.dmg
+*.app
