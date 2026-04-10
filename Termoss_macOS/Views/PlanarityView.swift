@@ -314,13 +314,13 @@ struct PlanarityView: View {
                     .padding(20)
             }
 
-            if game.isSolved {
+            if wasSolved {
                 winOverlay
                     .transition(.opacity.combined(with: .scale(scale: 0.95)))
             }
         }
         .frame(minWidth: 640, minHeight: 720)
-        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: game.isSolved)
+        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: wasSolved)
         .onAppear { startTimer() }
         .onDisappear { timer?.invalidate() }
     }
@@ -404,8 +404,7 @@ struct PlanarityView: View {
                 wasSolved = false
                 game.newGame()
                 restartTimer()
-                sfx.newGame()
-            }
+                            }
 
             MuteButton()
         }
@@ -445,7 +444,6 @@ struct PlanarityView: View {
                 y: (proxy.size.height - side) / 2
             )
             let crossings = game.crossingEdges()
-            let solved = crossings.isEmpty
 
             ZStack {
                 // Board background — glass pane
@@ -518,7 +516,7 @@ struct PlanarityView: View {
                 ForEach(game.vertices) { vertex in
                     PlanarityVertexView(
                         isDragging: draggingVertexID == vertex.id,
-                        isSolved: solved
+                        isSolved: wasSolved
                     )
                     .position(
                         x: vertex.position.x * boardSize.width,
@@ -546,7 +544,7 @@ struct PlanarityView: View {
                                 // Check if just solved
                                 if game.isSolved && !wasSolved {
                                     wasSolved = true
-                                    sfx.solve()
+                                    sfx.win()
                                 }
                             }
                     )
@@ -594,8 +592,7 @@ struct PlanarityView: View {
                         wasSolved = false
                         game.newGame()
                         restartTimer()
-                        sfx.newGame()
-                    }
+                                            }
                     if game.isCustom {
                         if game.customVertexCount < 120 {
                             GlassPillButton(title: "Add 3 Dots", style: .secondary) {
@@ -603,8 +600,7 @@ struct PlanarityView: View {
                                 game.customVertexCount = min(120, game.customVertexCount + 3)
                                 game.newGame()
                                 restartTimer()
-                                sfx.newGame()
-                            }
+                                                            }
                         }
                     } else if game.level < 9 {
                         GlassPillButton(title: "Next Level", style: .secondary) {
@@ -612,8 +608,7 @@ struct PlanarityView: View {
                             game.level += 1
                             game.newGame()
                             restartTimer()
-                            sfx.newGame()
-                        }
+                                                    }
                     }
                 }
                 .padding(.top, 6)

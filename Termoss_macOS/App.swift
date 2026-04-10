@@ -27,6 +27,7 @@ struct TermossApp: App {
             CommandMenu("Extras") {
                 PlanarityMenuButton()
                 ColourMenuButton()
+                SoundMenuButton()
             }
         }
 
@@ -43,6 +44,13 @@ struct TermossApp: App {
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 520, height: 600)
+
+        Window("Sound", id: "sound") {
+            SoundGameView()
+                .frame(minWidth: 480, minHeight: 500)
+        }
+        .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 520, height: 580)
     }
 }
 
@@ -65,6 +73,17 @@ private struct ColourMenuButton: View {
             openWindow(id: "colour")
         }
         .keyboardShortcut("l", modifiers: [.command, .shift])
+    }
+}
+
+private struct SoundMenuButton: View {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Sound") {
+            openWindow(id: "sound")
+        }
+        .keyboardShortcut("s", modifiers: [.command, .shift])
     }
 }
 

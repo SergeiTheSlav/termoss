@@ -27,6 +27,11 @@ if [ -f "Termoss_macOS/Resources/AppIcon.icns" ]; then
     cp "Termoss_macOS/Resources/AppIcon.icns" "$APP_DIR/Contents/Resources/AppIcon.icns"
 fi
 
+# Copy custom sound files
+for f in Termoss_macOS/Resources/*.mp3; do
+    [ -f "$f" ] && cp "$f" "$APP_DIR/Contents/Resources/"
+done
+
 # Nudge Launch Services to refresh the cached icon for this bundle
 touch "$APP_DIR"
 
