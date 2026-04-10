@@ -26,6 +26,7 @@ struct TermossApp: App {
             }
             CommandMenu("Extras") {
                 PlanarityMenuButton()
+                ColourMenuButton()
             }
         }
 
@@ -35,6 +36,13 @@ struct TermossApp: App {
         }
         .windowStyle(.hiddenTitleBar)
         .defaultSize(width: 860, height: 760)
+
+        Window("Colour", id: "colour") {
+            ColourGameView()
+                .frame(minWidth: 480, minHeight: 520)
+        }
+        .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 520, height: 600)
     }
 }
 
@@ -46,6 +54,17 @@ private struct PlanarityMenuButton: View {
             openWindow(id: "planarity")
         }
         .keyboardShortcut("p", modifiers: [.command, .shift])
+    }
+}
+
+private struct ColourMenuButton: View {
+    @Environment(\.openWindow) private var openWindow
+
+    var body: some View {
+        Button("Colour") {
+            openWindow(id: "colour")
+        }
+        .keyboardShortcut("l", modifiers: [.command, .shift])
     }
 }
 

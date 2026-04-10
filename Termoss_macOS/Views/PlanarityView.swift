@@ -1,4 +1,7 @@
 import SwiftUI
+import AppKit
+
+private let sfx = GameSoundManager.shared
 
 // MARK: - Model
 
@@ -295,6 +298,7 @@ struct PlanarityView: View {
     @State private var showConfetti: Bool = false
     @State private var elapsed: TimeInterval = 0
     @State private var timer: Timer? = nil
+    @State private var wasSolved: Bool = false  // track solve moment for sound
 
     var body: some View {
         ZStack {
@@ -350,6 +354,7 @@ struct PlanarityView: View {
                 Menu {
                     ForEach(3...9, id: \.self) { n in
                         Button("\(n)") {
+                            wasSolved = false
                             game.isCustom = false
                             game.level = n
                             game.newGame()
@@ -358,6 +363,7 @@ struct PlanarityView: View {
                     }
                     Divider()
                     Button("Custom…") {
+                        wasSolved = false
                         game.isCustom = true
                         game.newGame()
                         restartTimer()
@@ -395,9 +401,13 @@ struct PlanarityView: View {
             }
 
             GlassPillButton(title: "New Game", style: .secondary) {
+                wasSolved = false
                 game.newGame()
                 restartTimer()
+                sfx.newGame()
             }
+
+            MuteButton()
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 14)
@@ -519,6 +529,7 @@ struct PlanarityView: View {
                             .onChanged { value in
                                 if draggingVertexID != vertex.id {
                                     draggingVertexID = vertex.id
+                                    sfx.pickup()
                                 }
                                 let newPos = CGPoint(
                                     x: value.location.x / boardSize.width,
@@ -529,8 +540,14 @@ struct PlanarityView: View {
                             .onEnded { _ in
                                 if draggingVertexID == vertex.id {
                                     game.endMove()
+                                    sfx.drop()
                                 }
                                 draggingVertexID = nil
+                                // Check if just solved
+                                if game.isSolved && !wasSolved {
+                                    wasSolved = true
+                                    sfx.solve()
+                                }
                             }
                     )
                 }
@@ -574,22 +591,28 @@ struct PlanarityView: View {
 
                 HStack(spacing: 10) {
                     GlassPillButton(title: "Play Again", style: .accent) {
+                        wasSolved = false
                         game.newGame()
                         restartTimer()
+                        sfx.newGame()
                     }
                     if game.isCustom {
                         if game.customVertexCount < 120 {
                             GlassPillButton(title: "Add 3 Dots", style: .secondary) {
+                                wasSolved = false
                                 game.customVertexCount = min(120, game.customVertexCount + 3)
                                 game.newGame()
                                 restartTimer()
+                                sfx.newGame()
                             }
                         }
                     } else if game.level < 9 {
                         GlassPillButton(title: "Next Level", style: .secondary) {
+                            wasSolved = false
                             game.level += 1
                             game.newGame()
                             restartTimer()
+                            sfx.newGame()
                         }
                     }
                 }
